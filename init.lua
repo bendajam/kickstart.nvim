@@ -686,13 +686,14 @@ require('lazy').setup({
       }
     end,
   },
-  { 
+  {
     'catppuccin/nvim',
     name = 'catppuccin',
-    priority = 1000
-    require("catppuccin").setup { background = { light = "mocha" } }
+    priority = 1000,
+    config = function() -- This is the function that runs, AFTER loading
+      require('catppuccin').setup { background = { light = 'mocha' } }
+    end,
   },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
