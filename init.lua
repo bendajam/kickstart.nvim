@@ -68,9 +68,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- colors
-vim.cmd.colorscheme 'catppuccin'
-
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -689,7 +686,12 @@ require('lazy').setup({
       }
     end,
   },
-  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+  { 
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000
+    require("catppuccin").setup { background = { light = "mocha" } }
+  },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
