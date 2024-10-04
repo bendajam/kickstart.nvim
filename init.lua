@@ -68,7 +68,8 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.expandtab = false
 vim.opt.tabstop = 3 -- number of spaces
-vim.opt.shiftwidth = 3 -- number of spaces
+vim.opt.shiftwidth = 0 -- number of spaces
+vim.opt.softtabstop = -1
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
@@ -162,7 +163,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  --'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   --'aserowy/tmux.nvim',
 
@@ -648,7 +649,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = true, javascript = true }
         return {
           timeout_ms = 500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
@@ -871,6 +872,27 @@ require('lazy').setup({
       }
     end,
   },
+  {
+    'chrisgrieser/nvim-spider',
+    keys = {
+      {
+        'e',
+        "<cmd>lua require('spider').motion('e')<CR>",
+        mode = { 'n', 'o', 'x' },
+      },
+      {
+        'w',
+        "<cmd>lua require('spider').motion('w')<CR>",
+        mode = { 'n', 'o', 'x' },
+      },
+      {
+        'b',
+        "<cmd>lua require('spider').motion('b')<CR>",
+        mode = { 'n', 'o', 'x' },
+      },
+    },
+    lazy = true,
+  },
   { 'hrsh7th/cmp-nvim-lsp' },
   -- { 'maxmellon/vim-jsx-pretty' },
   { -- Highlight, edit, and navigate code
@@ -901,7 +923,7 @@ require('lazy').setup({
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
-      -- indent = { enable = true, disable = { 'ruby' } },
+      indent = { enable = true, disable = { 'ruby' } },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
