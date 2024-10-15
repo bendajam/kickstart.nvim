@@ -76,9 +76,6 @@ vim.opt.scrolloff = 10
 -- FileTypes
 vim.filetype.add {
   extension = { templ = 'templ' },
-  --filename = {
-  --  ['.rjs', '.atj'] = 'javascript',
-  --},
 }
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
@@ -625,10 +622,10 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        -- 'ts_ls',
-        -- 'eslint',
-        -- 'jsonls',
-        -- 'eslint',
+        'ts_ls',
+        'eslint',
+        'jsonls',
+        'eslint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -799,8 +796,8 @@ require('lazy').setup({
     name = 'catppuccin',
     priority = 1000,
     config = function() -- This is the function that runs, AFTER loading
+      require('catppuccin').setup { background = { dark = 'mocha' } }
       vim.cmd.colorscheme 'catppuccin'
-      require('catppuccin').setup { background = { light = 'mocha' } }
     end,
   },
   --[[
