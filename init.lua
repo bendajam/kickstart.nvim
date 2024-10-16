@@ -610,10 +610,10 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'ts_ls',
-        'eslint',
-        'jsonls',
-        'eslint',
+        -- 'ts_ls',
+        -- 'eslint',
+        -- 'jsonls',
+        -- 'eslint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -784,6 +784,7 @@ require('lazy').setup({
     name = 'catppuccin',
     priority = 1000,
     config = function() -- This is the function that runs, AFTER loading
+      vim.cmd.colorscheme 'catppuccin'
       require('catppuccin').setup { background = { light = 'mocha' } }
     end,
   },
