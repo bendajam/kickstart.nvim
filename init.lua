@@ -344,11 +344,13 @@ require('lazy').setup({
         --  All the info you're looking for is in `:help telescope.setup()`
         --
         defaults = {
+          hidden = true,
+          no_ignore = true,
           file_ignore_patterns = {
+            '.git',
             'node_modules',
             'requestlog',
             'clienttransfers',
-            'db',
             'objects',
             '*.pdf',
             '*.jpeg',
@@ -358,7 +360,20 @@ require('lazy').setup({
           --   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           -- },
         },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            hidden = true,
+            no_ignore = true,
+          },
+          grep_files = {
+            hidden = true,
+            no_ignore = true,
+          },
+          live_grep = {
+            hidden = true,
+            no_ignore = true,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
