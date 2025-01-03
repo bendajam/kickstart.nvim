@@ -162,6 +162,17 @@ require('lazy').setup({
   --'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   --'aserowy/tmux.nvim',
+  -- Add in dadbod
+  {
+    'tpope/vim-dadbod',
+    dependencies = {
+      'kristijanhusak/vim-dadbod-ui',
+      'kristijanhusak/vim-dadbod-completion',
+    },
+  },
+
+  -- Add in diffview for git branch comparisons
+  { 'sindrets/diffview.nvim' },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -789,6 +800,12 @@ require('lazy').setup({
           { name = 'path' },
         },
       }
+      cmp.setup.filetype({ 'sql' }, {
+        sources = {
+          { name = 'vim-dadbod-completion' },
+          { name = 'buffer' },
+        },
+      })
     end,
   },
   {
